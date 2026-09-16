@@ -1,0 +1,168 @@
+Makefile
+
+Estructura: % [flags] [width] [.precision] conversion
+
+conversiones -> c s p d i u x X %
+
+	%c para imprimir un solo carácter.
+	%s para imprimir una cadena de caracteres (como se define por defecto en C).
+	%p el puntero void * dado como argumento se imprime en formato hexadecimal.
+	%d para imprimir un número decimal (base 10).
+	%i para imprimir un entero en base 10.
+	%u para imprimir un número decimal (base 10) sin signo.
+	%x para imprimir un número hexadecimal (base 16) en minúsculas.
+	%X para imprimir un número hexadecimal (base 16) en mayúsculas.
+	%% para imprimir el símbolo del porcentaje
+
+	%c → int
+	%s → char *
+	%p → void *
+	%d → int
+	%i → int
+	%u → unsigned int
+	%x → unsigned int
+	%X → unsigned int
+
+
+Bouns:
+
+Gestiona cualquier combinación de las siguientes flags: ’-0.’ y el ancho mínimo
+(field minimum width) bajo todas las conversiones posibles.
+
+	FLAG	0
+		Sirve para rellenar con ceros para que ocupen width opciones.
+
+	FLAG	-
+		Alinea el resultado a la izquierda.
+
+	FLAG	.
+		Indica que a partir de aquí viene la precisión.
+
+
+	printf("%10.5d", 42); ->	      00042
+	printf("%010d", 42); ->		00000000042
+
+	Si hay a la misma vez '0' y '.', '0' queda invalidado y solo se cuenta la precisión.
+
+	##
+
+		0  → ¿Cómo relleno el espacio sobrante del WIDTH?
+		.  → ¿Cuántos dígitos/caracteres debe tener como mínimo el resultado?
+		-  → ¿A qué lado coloco el resultado dentro del WIDTH?
+
+	##
+
+	Para d = 42
+
+	%10d		->		        42
+	%-10d		->		42        
+	%010d		->		0000000042
+	%.5d		->		00042
+	%10.5d		->		     00042
+	%-10.5d		->		00042     
+	%010.5d		->		     00042
+
+
+Gestiona las siguientes flags: ’# +’ (sí, uno de ellos es un espacio).
+
+	FLAG	#
+		Pide una forma alternativa de representar el valor, pero su efecto depende de la conversión.
+			%x -> 2a
+			%o -> 52
+			%#x -> 0x2a
+			%#X -> 0X2A
+			%#o -> 052
+	
+	FLAG	+
+		Sirve para que siempre se muestre el signo.
+			42
+				%d->42
+				%.d->+42
+			-42
+				%d->-42
+				%+d->-42
+			0 lleva signo positivo.
+
+	FLAG	 
+		Sirve para que cuando sea positivo ponga un ' ' en vez del signo
+			42
+				%d->42
+				% d-> 42
+			-42
+				%d->-42
+				%+d->-42
+
+	PRIORIDADES: + > espacio
+
+	42:
+		%d			->	42
+		%+d			->	+42
+		% d			->	42
+		%x			->	2a
+%#x			->	0x2a
+		%X			->	2A
+%#X			->	0X2A
+		%o			->	52
+%#o			->	052
+		%10d		->	42
+		%+10d		->	+42
+		% 10d		->	42
+		%010d		->	0000000042
+		%+010d		->	+000000042
+%#10x		->	0x2a
+%#010x		->	0x0000002a
+
+
+ARGUMENTOS ILIMITADOS:
+
+	<stdarg.h>
+
+	int	ft_printf(const char *format, ...);
+	
+	... -> después de format puede venir cualquier cantidad de argumentos.
+
+	va_list
+		Tipo de la lista de argumentos.
+
+	va_start(va_list, char *); 
+		Inicializa el acceso a los parámetros variables.
+
+	va_arg(va_list, tipo_del_siguiente_objeto);
+		Obtienes el siguiente argumento indicando que tipo tiene.
+
+	va_end(va_list);
+		Cierra la lista.
+
+	%s → char *
+	%d → int
+	%i → int
+	%u → unsigned int
+	%x → unsigned int
+	%X → unsigned int
+	%c → int
+	%p → void *
+
+FUNCIONES:
+
+	Detectar %s
+	Formateadores
+
+0- +.
+
+
++ 
+.0
+-
+
+
+| Conversión |  `-` |  `0` |  `#` |  `+` |  espacio |  Precisión |
+| ---------- |  :-: |  :-: |  :-: |  :-: |  :-----: |  :-------: |
+| `%d`       |  ✅  |  ✅  |  ❌  |  ✅  |    ✅    |     ✅     |
+| `%i`       |  ✅  |  ✅  |  ❌  |  ✅  |    ✅    |     ✅     |
+| `%u`       |  ✅  |  ✅  |  ❌  |  ❌  |    ❌    |     ✅     |
+| `%x`       |  ✅  |  ✅  |  ✅  |  ❌  |    ❌    |     ✅     |
+| `%X`       |  ✅  |  ✅  |  ✅  |  ❌  |    ❌    |     ✅     |
+| `%c`       |  ✅  |  ❌  |  ❌  |  ❌  |    ❌    |     ❌     |
+| `%s`       |  ✅  |  ❌  |  ❌  |  ❌  |    ❌    |     ✅     |
+| `%p`       |  ✅  |  ❌* |  ❌  |  ❌  |    ❌    |     ❌*    |
+| `%%`       |  ❌  |  ❌  |  ❌  |  ❌  |    ❌    |     ❌     |
