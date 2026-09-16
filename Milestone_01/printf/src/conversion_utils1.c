@@ -39,9 +39,6 @@ int	ft_puts(t_context *cx, va_list a)
 	int		len;
 
 	tam = 0;
-	s = malloc(sizeof(char *));
-	if (s == NULL)
-		return (0);
 	s = va_arg(a, char *);
 	len = ft_slen(s);
 	if (ft_dt_flag(cx->flags, '-') == 1)

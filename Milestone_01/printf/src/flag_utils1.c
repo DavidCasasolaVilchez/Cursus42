@@ -6,7 +6,7 @@
 /*   By: dcasasol <dcasasol@student.42malaga.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/09/16 16:50:14 by dcasasol         #+#    #+#              */
-/*   Updated: 2026/09/16 16:50:14 by dcasasol        ###   ########.fr        */
+/*   Updated: 2026/09/16 17:18:27 by dcasasol        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ void	ft_flag_sign(int num, t_context *cx)
 	if (num < 0)
 		ft_putchar_fd('-', 1);
 	if (ft_dt_flag(cx->flags, ' ') == 1 || ft_dt_flag(cx->flags, '+') == 1)
+	{
 		if (ft_dt_flag(cx->flags, '+') == 1)
 			ft_flag_putsign(num, '+');
-	else
-		ft_flag_putsign(num, ' ');
+		else
+			ft_flag_putsign(num, ' ');
+	}
 }
 
 int	ft_flag_zero(int num, t_context *cx, int tam, int sgn)
@@ -74,13 +76,13 @@ int	ft_flag_space(int num, t_context *cx, int tam, int sgn)
 			ft_fill((cx->width - tam), ' ');
 			return (cx->width - tam);
 		}
-	}
-	else
-	{
-		if ((cx->width - tam) < 0)
-			return (0);
-		ft_fill((cx->width - tam), ' ');
-		return (cx->width - tam);
+		else
+		{
+			if ((cx->width - tam) < 0)
+				return (0);
+			ft_fill((cx->width - tam), ' ');
+			return (cx->width - tam);
+		}
 	}
 }
 
@@ -99,4 +101,5 @@ int	ft_flag_alternative(int num, t_context *cx, int may)
 		ft_putstr_fd("0", 1);
 		return (1);
 	}
+	return (0);
 }

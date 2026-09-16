@@ -30,13 +30,13 @@ int	ft_printf(char const *str, ...)
 			ft_putchar_fd(str[i], 1);
 			p++;
 		}
-	}
-	else
-	{
-		res = ft_evaluate_conversion(str, &i, a, ft_create_conversions());
-		if (res == -1)
-			return (-1);
-		p += res;
+		else
+		{
+			res = ft_evaluate_conversion(str, &i, a, ft_create_conversions());
+			if (res == -1)
+				return (-1);
+			p += res;
+		}
 	}
 	return (p);
 }
