@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_libft.h"
+#include "libft.h"
 
 static size_t	ft_is_set(char c, char const *set)
 {
@@ -51,6 +51,17 @@ static size_t	ft_strlen_1_trim(char const *s1, size_t len, char const *set)
 	return (len - trim);
 }
 
+static char	*ft_liberable_return(void)
+{
+	char	*n;
+
+	n = malloc(sizeof(char));
+	if (n == NULL)
+		return (NULL);
+	n[0] = '\0';
+	return (n);
+}
+
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	i;
@@ -60,9 +71,11 @@ char	*ft_strtrim(char const *s1, char const *set)
 	char	*c;
 
 	t = ft_strlen_1_trim(s1, ft_strlen_1(s1), set);
+	if (t < 0)
+		return (ft_liberable_return());
 	c = malloc(sizeof(char) * (t + 1));
 	if (c == NULL)
-		return (NULL);
+		return (ft_liberable_return());
 	i = ft_strlen_1(s1) - 1;
 	f = 0;
 	while (ft_is_set(s1[i--], set) == 0)

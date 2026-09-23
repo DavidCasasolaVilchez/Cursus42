@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_libft.h"
+#include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+static void	ft_lstclear_aux(t_list **lst, void (*del)(void *))
 {
 	t_list	*nodo1;
 	t_list	*nodo2;
@@ -58,7 +58,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		nodo = malloc(sizeof(t_list));
 		if (nodo == NULL)
 		{
-			ft_lstclear(&res, del);
+			ft_lstclear_aux(&res, del);
 			return (NULL);
 		}
 		nodo->content = f(lst->content);

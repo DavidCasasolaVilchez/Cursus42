@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_libft.h"
+#include "libft.h"
 
 static int	ft_check_match(const char *b, const char *t, size_t i, size_t l)
 {

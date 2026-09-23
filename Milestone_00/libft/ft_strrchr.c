@@ -10,7 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_libft.h"
+#include "libft.h"
+
+static size_t	ft_strlen_aux_strrchr(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
 
 char	*ft_strrchr(const char *s, int c)
 {
@@ -21,13 +31,15 @@ char	*ft_strrchr(const char *s, int c)
 	i = 0;
 	p = (char *) s;
 	r = NULL;
+	if (c == 0)
+		return (p + ft_strlen_aux_strrchr(p));
 	while (s[i])
 	{
-		if (s[i] == c)
+		if (s[i] == (char)c)
 			r = p;
 		i++;
 		p++;
-		if (s[i] == '\0' && c == '\0')
+		if (s[i] == '\0' && (char)c == '\0')
 			r = p;
 	}
 	return (r);
