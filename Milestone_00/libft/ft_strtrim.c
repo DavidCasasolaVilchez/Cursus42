@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                       :::      ::::::::    */
-/*   ft_strtrim.c                                      :+:      :+:    :+:    */
-/*                                                   +:+ +:+         +:+      */
-/*   By: dcasasol <dcasasol@student.42malaga.com>  #+#  +:+       +#+         */
-/*                                               +#+#+#+#+#+   +#+            */
-/*   Created: 2026/09/09 13:08:19 by dcasasol         #+#    #+#              */
-/*   Updated: 2026/09/09 13:08:19 by dcasasol        ###   ########.fr        */
+/*                                                        :::      ::::::::   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dcasasol <dcasasol@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/09 13:08:19 by dcasasol          #+#    #+#             */
+/*   Updated: 2026/09/24 17:15:19 by dcasasol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,12 @@ static size_t	ft_strlen_1_trim(char const *s1, size_t len, char const *set)
 	trim = 0;
 	while (s1[i] && ft_is_set(s1[i++], set) == 0)
 		trim++;
+	if (s1[i] == '\0')
+		return (0);
 	i = len - 1;
 	while (i >= 0 && ft_is_set(s1[i--], set) == 0)
 		trim++;
 	return (len - trim);
-}
-
-static char	*ft_liberable_return(void)
-{
-	char	*n;
-
-	n = malloc(sizeof(char));
-	if (n == NULL)
-		return (NULL);
-	n[0] = '\0';
-	return (n);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
@@ -71,11 +62,11 @@ char	*ft_strtrim(char const *s1, char const *set)
 	char	*c;
 
 	t = ft_strlen_1_trim(s1, ft_strlen_1(s1), set);
-	if (t < 0)
-		return (ft_liberable_return());
+	if (t <= 0)
+		t = 0;
 	c = malloc(sizeof(char) * (t + 1));
 	if (c == NULL)
-		return (ft_liberable_return());
+		return (NULL);
 	i = ft_strlen_1(s1) - 1;
 	f = 0;
 	while (ft_is_set(s1[i--], set) == 0)

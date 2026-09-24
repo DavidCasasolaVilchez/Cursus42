@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                       :::      ::::::::    */
-/*   ft_lstmap.c                                       :+:      :+:    :+:    */
-/*                                                   +:+ +:+         +:+      */
-/*   By: dcasasol <dcasasol@student.42malaga.com>  #+#  +:+       +#+         */
-/*                                               +#+#+#+#+#+   +#+            */
-/*   Created: 2026/09/10 17:52:40 by dcasasol         #+#    #+#              */
-/*   Updated: 2026/09/10 17:52:40 by dcasasol        ###   ########.fr        */
+/*                                                        :::      ::::::::   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dcasasol <dcasasol@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/10 17:52:40 by dcasasol          #+#    #+#             */
+/*   Updated: 2026/09/24 16:34:43 by dcasasol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,13 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*nodo;
 
 	res = NULL;
-	while (lst != NULL)
+	while (lst != NULL && f != NULL)
 	{
 		nodo = malloc(sizeof(t_list));
 		if (nodo == NULL)
 		{
-			ft_lstclear_aux(&res, del);
+			if (del != NULL)
+				ft_lstclear_aux(&res, del);
 			return (NULL);
 		}
 		nodo->content = f(lst->content);
