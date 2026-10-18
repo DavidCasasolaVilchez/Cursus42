@@ -6,7 +6,7 @@
 /*   By: dcasasol <dcasasol@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/23 09:28:10 by dcasasol          #+#    #+#             */
-/*   Updated: 2026/09/23 14:02:06 by dcasasol         ###   ########.fr       */
+/*   Updated: 2026/10/06 09:39:11 by dcasasol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ int	ft_strlen(char *s)
 	return (i);
 }
 
-int	ft_cnl(char *s, int r)
+int	ft_cnl(char *s, int r, char c)
 {
 	int	i;
 
 	i = 0;
 	while (i < r)
 	{
-		if (s[i] == '\n')
+		if (s[i] == c)
 			return (i + 1);
 		i++;
 	}

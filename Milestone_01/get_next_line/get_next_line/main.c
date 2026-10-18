@@ -30,7 +30,7 @@ int	main(void)
 	}
 	else
 	{
-		fd = open("test.txt", O_RDONLY);
+		fd = open("README.md", O_RDONLY);
 		if (fd == -1)
 		{
 			perror("open");

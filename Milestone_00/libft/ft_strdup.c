@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                       :::      ::::::::    */
-/*   ft_strdup.c                                       :+:      :+:    :+:    */
-/*                                                   +:+ +:+         +:+      */
-/*   By: dcasasol <dcasasol@student.42malaga.com>  #+#  +:+       +#+         */
-/*                                               +#+#+#+#+#+   +#+            */
-/*   Created: 2026/09/09 11:24:53 by dcasasol         #+#    #+#              */
-/*   Updated: 2026/09/09 11:24:53 by dcasasol        ###   ########.fr        */
+/*                                                        :::      ::::::::   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dcasasol <dcasasol@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/09 11:24:53 by dcasasol          #+#    #+#             */
+/*   Updated: 2026/09/28 21:44:19 by dcasasol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,9 @@ char	*ft_strdup(const char *s)
 	c = malloc(sizeof(char) * (ft_strlen_1(s) + 1));
 	if (c == NULL)
 		return (NULL);
-	i = 0;
-	while (s[i])
-	{
+	i = -1;
+	while (s[++i])
 		c[i] = s[i];
-		i++;
-	}
 	c[i] = '\0';
 	return (c);
 }

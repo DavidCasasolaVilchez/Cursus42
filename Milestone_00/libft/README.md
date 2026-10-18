@@ -115,7 +115,7 @@ Incluye la cabecera de la biblioteca en el archivo C:
 ```
 Compila tu programa enlazándolo con `libft.a`:
 ```bash
-cc -Wall -Wextra -Werror -Iinclude main.c -L. -lft -o ejec
+cc -Wall -Wextra -Werror -Iinclude main.c include/libft.a -o ejec
 ```
 
 ### Ejecución

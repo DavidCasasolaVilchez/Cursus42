@@ -6,7 +6,7 @@
 /*   By: dcasasol <dcasasol@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/23 09:29:25 by dcasasol          #+#    #+#             */
-/*   Updated: 2026/09/23 12:31:12 by dcasasol         ###   ########.fr       */
+/*   Updated: 2026/10/06 09:40:17 by dcasasol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_buffer
 char	*get_next_line(int fd);
 
 int		ft_strlen(char *s);
-int		ft_cnl(char *s, int r);
+int		ft_cnl(char *s, int r, char c);
 char	*ft_realloc(t_buffer *line, char *buffer, int buffer_size);
 void	ft_save_rest(char **rest, char *s, int pos);
 

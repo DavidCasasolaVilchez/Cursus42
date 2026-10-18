@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                       :::      ::::::::    */
-/*   ft_printf.c                                       :+:      :+:    :+:    */
-/*                                                   +:+ +:+         +:+      */
-/*   By: dcasasol <dcasasol@student.42malaga.com>  #+#  +:+       +#+         */
-/*                                               +#+#+#+#+#+   +#+            */
-/*   Created: 2026/09/14 09:59:19 by dcasasol         #+#    #+#              */
-/*   Updated: 2026/09/16 16:49:57 by dcasasol        ###   ########.fr        */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dcasasol <dcasasol@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/14 09:59:19 by dcasasol          #+#    #+#             */
+/*   Updated: 2026/09/25 15:47:19 by dcasasol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_printf(char const *str, ...)
 	va_list			a;
 
 	conversions = ft_create_conversions();
-	if (conversions == NULL)
+	if (conversions == NULL || str == NULL)
 		return (-1);
 	va_start(a, str);
 	res = 0;

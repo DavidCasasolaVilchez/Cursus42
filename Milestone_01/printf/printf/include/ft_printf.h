@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                       :::      ::::::::    */
-/*   libftprintf.h                                     :+:      :+:    :+:    */
-/*                                                   +:+ +:+         +:+      */
-/*   By: dcasasol <dcasasol@student.42malaga.com>  #+#  +:+       +#+         */
-/*                                               +#+#+#+#+#+   +#+            */
-/*   Created: 2026/09/16 16:50:26 by dcasasol         #+#    #+#              */
-/*   Updated: 2026/09/16 16:50:26 by dcasasol        ###   ########.fr        */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dcasasol <dcasasol@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/16 16:50:26 by dcasasol          #+#    #+#             */
+/*   Updated: 2026/09/28 10:54:50 by dcasasol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int				ft_numlen(int num, int base, int sgn);
 
 int				ft_free_context(t_context *cx, int ret);
 int				ft_end_list(va_list a, int p, t_conversion	*co);
-int				ft_char_lector(char const *str, va_list a, 
+int				ft_char_lector(char const *str, va_list a,
 					t_conversion *cn, int *i);
 
 void			ft_flag_sign(int num, t_context *cx);
@@ -68,6 +68,7 @@ int				ft_putu(t_context *cx, va_list a);
 int				ft_putx(t_context *cx, va_list a);
 int				ft_putxx(t_context *cx, va_list a);
 int				ft_put_porcent(t_context *cx, va_list a);
+int				ft_put_space_minus(t_context *cx, unsigned int x, int tam);
 
 int				ft_evaluate_conversion(char const *str, int *ptr,
 					va_list a, t_conversion *convers);

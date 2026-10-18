@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                       :::      ::::::::    */
-/*   main.c                                            :+:      :+:    :+:    */
-/*                                                   +:+ +:+         +:+      */
-/*   By: dcasasol <dcasasol@student.42malaga.com>  #+#  +:+       +#+         */
-/*                                               +#+#+#+#+#+   +#+            */
-/*   Created: 2026/09/16 16:49:40 by dcasasol         #+#    #+#              */
-/*   Updated: 2026/09/16 16:49:40 by dcasasol        ###   ########.fr        */
+/*                                                        :::      ::::::::   */
+/*   pruebas_main.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dcasasol <dcasasol@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/16 16:49:40 by dcasasol          #+#    #+#             */
+/*   Updated: 2026/10/01 09:46:46 by dcasasol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,8 +158,8 @@ int	main(void)
 	len_tuya = ft_printf("Tuya:     [%#10x]\n", 255);
 	printf("Retorno -> Original: %d | Tuyo: %d\n\n", len_original, len_tuya);
 	printf("--- TEST 23: # + 0 + width ---\n");
-	len_original = printf("Original: [%#010x]\n", 255);
-	len_tuya = ft_printf("Tuya:     [%#010x]\n", 255);
+	len_original = printf("Original: [%.0x]\n", 255);
+	len_tuya = ft_printf("Tuya:     [%.0x]\n", 255);
 	printf("Retorno -> Original: %d | Tuyo: %d\n\n", len_original, len_tuya);
 	printf("--- TEST 24: + + precision ---\n");
 	len_original = printf("Original: [%+.5d]\n", 42);
@@ -202,8 +202,8 @@ int	main(void)
 	len_tuya = ft_printf("Tuya:     [%.0x]\n", 0);
 	printf("Retorno -> Original: %d | Tuyo: %d\n\n", len_original, len_tuya);
 	printf("\n--- TEST 33: width + precisión 0 con 0 ---\n");
-	len_original = printf("Original: [%10.0d]\n", 0);
-	len_tuya = ft_printf("Tuya:     [%10.0d]\n", 0);
+	len_original = printf("Original: [%-010d]\n", 0);
+	len_tuya = ft_printf("Tuya:     [%-010d]\n", 0);
 	printf("Retorno -> Original: %d | Tuyo: %d\n\n", len_original, len_tuya);
 	printf("\n--- TEST 34: precisión con %%s ---\n");
 	len_original = printf("Original: [%.5s]\n", "Hola");
@@ -216,19 +216,23 @@ int	main(void)
 	printf("========================================\n");
 	printf("              FIN TESTS\n");
 	printf("========================================\n");
-	return (0);*/
+	return (0);
 
+*/
 	//
-	len_original = printf("printf:    %%#x[1] -> %#x\n", 0);
-	len_tuya = ft_printf("ft_printf: %%#x[1] -> %#x\n", 0);
+	len_original = printf("printf:    %%-0010d[24] -> %-0010d\n", 42);
+	len_tuya = ft_printf("ft_printf: %%-0010d[24] -> %-0010d\n", 42);
 	printf("Retorno -> Original: %d | Tuyo: %d\n\n", len_original, len_tuya);
 
-	/*len_original = printf("printf:    %%#x[1] -> %#x\n", LONG_MIN);
-	len_tuya = ft_printf("ft_printf: %%#x[1] -> %#x\n", LONG_MIN);
+	len_original = printf("printf:    %%.0d[192] -> %.0d\n", 0);
+	len_tuya = ft_printf("ft_printf: %%.0d[192] -> %.0d\n", 0);
 	printf("Retorno -> Original: %d | Tuyo: %d\n\n", len_original, len_tuya);
-
-	len_original = printf("printf:    %%#x[1] -> %#x\n", 0);
-	len_tuya = ft_printf("ft_printf: %%#x[1] -> %#x\n", 0);
+/*
+	len_original = printf("printf:    %%-010d[179] -> %-010d\n", 42);
+	len_tuya = ft_printf("ft_printf: %%-010d[179] -> %-010d\n", 42);
+	printf("Retorno -> Original: %d | Tuyo: %d\n\n", len_original, len_tuya);
+	
+	len_original = printf("printf:    %%-010d[156] -> %-010d\n", 0);
+	len_tuya = ft_printf("ft_printf: %%-010d[156] -> %-010d\n", 0);
 	printf("Retorno -> Original: %d | Tuyo: %d\n\n", len_original, len_tuya);*/
-
 }

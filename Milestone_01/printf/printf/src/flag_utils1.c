@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                       :::      ::::::::    */
-/*   flag_utils1.c                                     :+:      :+:    :+:    */
-/*                                                   +:+ +:+         +:+      */
-/*   By: dcasasol <dcasasol@student.42malaga.com>  #+#  +:+       +#+         */
-/*                                               +#+#+#+#+#+   +#+            */
-/*   Created: 2026/09/16 16:50:14 by dcasasol         #+#    #+#              */
-/*   Updated: 2026/09/16 17:18:27 by dcasasol        ###   ########.fr        */
+/*                                                        :::      ::::::::   */
+/*   flag_utils1.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dcasasol <dcasasol@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/16 16:50:14 by dcasasol          #+#    #+#             */
+/*   Updated: 2026/09/28 10:54:07 by dcasasol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	ft_flag_zero(int num, t_context *cx, int tam, int sgn)
 	else if (ft_dt_flag(cx->flags, '0') == 1
 		&& ft_dt_flag(cx->flags, '-') == 0)
 	{
+		if (ft_dt_flag(cx->flags, '#') && num != 0)
+			tam += 2;
 		if ((cx->width - tam) < 0)
 			return (0);
 		ft_fill((cx->width - tam), '0');
@@ -64,12 +66,16 @@ int	ft_flag_prec(char *s, t_context *cx)
 
 int	ft_flag_space(int num, t_context *cx, int tam, int sgn)
 {
-	if (ft_dt_flag(cx->flags, '0') == 0 || cx->prec != -1)
+	if (ft_dt_flag(cx->flags, '#') && num != 0)
+		tam += 2;
+	if (ft_dt_flag(cx->flags, '0') == 0 || (ft_dt_flag(cx->flags, '0') == 1
+			&& ft_dt_flag(cx->flags, '-') == 1))
 	{
-		if (cx->prec != -1)
+		if (cx->prec != -1 && cx->prec != 0)
 		{
 			if ((ft_dt_flag(cx->flags, ' ') == 1
-					|| ft_dt_flag(cx->flags, '+') == 1 || num < 0) && sgn == 1)
+					|| ft_dt_flag(cx->flags, '+') == 1 || num < 0)
+				&& sgn == 1 && ft_dt_flag(cx->flags, '-') == 0)
 				tam++;
 			if ((cx->width - tam) < 0)
 				return (0);

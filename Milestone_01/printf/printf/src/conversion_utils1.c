@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                       :::      ::::::::    */
-/*   conversion_utils1.c                               :+:      :+:    :+:    */
-/*                                                   +:+ +:+         +:+      */
-/*   By: dcasasol <dcasasol@student.42malaga.com>  #+#  +:+       +#+         */
-/*                                               +#+#+#+#+#+   +#+            */
-/*   Created: 2026/09/16 16:50:19 by dcasasol         #+#    #+#              */
-/*   Updated: 2026/09/16 16:50:19 by dcasasol        ###   ########.fr        */
+/*                                                        :::      ::::::::   */
+/*   conversion_utils1.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dcasasol <dcasasol@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/16 16:50:19 by dcasasol          #+#    #+#             */
+/*   Updated: 2026/09/28 10:50:43 by dcasasol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ int	ft_puts(t_context *cx, va_list a)
 
 	tam = 0;
 	s = va_arg(a, char *);
-	if (s == NULL)
+	if (s == NULL && cx->prec != -1)
+		return (ft_free_context(cx, tam));
+	else if (s == NULL)
 		s = "(null)";
 	len = ft_slen(s);
 	if (ft_dt_flag(cx->flags, '-') == 1)
@@ -95,6 +97,8 @@ int	ft_putd(t_context *cx, va_list a)
 	int	aux;
 
 	d = va_arg(a, int);
+	if (cx->prec == 0 && d == 0)
+		return (ft_flag_space(d, cx, 0, 1), cx->width);
 	tam = ft_size_conversion(d, cx, 10, 1);
 	if (ft_dt_flag(cx->flags, '-') == 1)
 	{
@@ -104,7 +108,7 @@ int	ft_putd(t_context *cx, va_list a)
 		tam += ft_flag_space(d, cx, tam, 1);
 		return (ft_free_context(cx, tam));
 	}
-	if (cx->prec != -1 && cx->prec >= tam)
+	if (cx->prec != -1 && cx->prec != 0 && cx->prec >= tam)
 		aux = ft_flag_space(d, cx, cx->prec, 1);
 	else
 		aux = ft_flag_space(d, cx, tam, 1);

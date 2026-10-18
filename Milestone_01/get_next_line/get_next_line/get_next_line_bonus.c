@@ -6,16 +6,16 @@
 /*   By: dcasasol <dcasasol@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/23 09:27:49 by dcasasol          #+#    #+#             */
-/*   Updated: 2026/09/23 14:07:01 by dcasasol         ###   ########.fr       */
+/*   Updated: 2026/09/28 12:18:40 by dcasasol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-static t_buffer *ft_init_buffer()
+static t_buffer	*ft_init_buffer(void)
 {
 	t_buffer	*buf;
-	
+
 	buf = malloc(sizeof(t_buffer));
 	if (buf == NULL)
 		return (NULL);
@@ -27,6 +27,7 @@ static t_buffer *ft_init_buffer()
 	buf->data[0] = '\0';
 	return (buf);
 }
+
 static char	*ft_comprobate_rest(char **rest, int size, t_buffer *ln)
 {
 	char	*aux;

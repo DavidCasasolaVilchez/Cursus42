@@ -6,16 +6,16 @@
 /*   By: dcasasol <dcasasol@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/23 09:27:49 by dcasasol          #+#    #+#             */
-/*   Updated: 2026/09/23 13:55:30 by dcasasol         ###   ########.fr       */
+/*   Updated: 2026/10/06 09:39:55 by dcasasol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static t_buffer *ft_init_buffer()
+static t_buffer	*ft_init_buffer(void)
 {
 	t_buffer	*buf;
-	
+
 	buf = malloc(sizeof(t_buffer));
 	if (buf == NULL)
 		return (NULL);
@@ -27,6 +27,7 @@ static t_buffer *ft_init_buffer()
 	buf->data[0] = '\0';
 	return (buf);
 }
+
 static char	*ft_comprobate_rest(char **rest, int size, t_buffer *ln)
 {
 	char	*aux;
@@ -35,7 +36,7 @@ static char	*ft_comprobate_rest(char **rest, int size, t_buffer *ln)
 
 	if (*rest == NULL)
 		return (NULL);
-	posnl = ft_cnl(*rest, size);
+	posnl = ft_cnl(*rest, size, '\n');
 	if (posnl == -1)
 		return (NULL);
 	ln->data = ft_realloc(ln, *rest, posnl);
@@ -61,7 +62,7 @@ static char	*ft_process_buffer(char *buffer, int res,
 	int		posnl;
 	char	*new_line;
 
-	posnl = ft_cnl(buffer, res);
+	posnl = ft_cnl(buffer, res, '\n');
 	if (posnl != -1)
 	{
 		new_line = ft_realloc(line, buffer, posnl);
@@ -91,7 +92,7 @@ static char	*ft_read_loop(int fd, char **rest, t_buffer *line)
 	{
 		buffer[res] = '\0';
 		line->data = ft_process_buffer(buffer, res, rest, line);
-		if (ft_cnl(buffer, res) != -1 || line->data == NULL)
+		if (ft_cnl(buffer, res, '\n') != -1 || line->data == NULL)
 			return (free(buffer), line->data);
 		res = read(fd, buffer, BUFFER_SIZE);
 		if (res == -1)

@@ -1,0 +1,10 @@
+[tool.poetry]
+name = "loading"
+version = "0.1.0"
+description = "Dependency management exercise"
+authors = ["dcasasol"]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<4.0"
+numpy = "2.1.0"
+pandas = "1.25.0"

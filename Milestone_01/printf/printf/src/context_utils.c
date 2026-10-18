@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                       :::      ::::::::    */
-/*   context_utils.c                                   :+:      :+:    :+:    */
-/*                                                   +:+ +:+         +:+      */
-/*   By: dcasasol <dcasasol@student.42malaga.com>  #+#  +:+       +#+         */
-/*                                               +#+#+#+#+#+   +#+            */
-/*   Created: 2026/09/16 16:50:23 by dcasasol         #+#    #+#              */
-/*   Updated: 2026/09/16 16:50:23 by dcasasol        ###   ########.fr        */
+/*                                                        :::      ::::::::   */
+/*   context_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dcasasol <dcasasol@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/16 16:50:23 by dcasasol          #+#    #+#             */
+/*   Updated: 2026/09/28 10:47:21 by dcasasol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ int	ft_evaluate_conversion(char const *str, int *ptr, va_list a,
 	cx->width = 0;
 	*ptr += 1;
 	*ptr = ft_get_context(str, *ptr, cx);
-	if (*ptr == -1)
-		return (*ptr);
 	car = str[*ptr];
 	while (convers[i].indx != '\0')
 	{

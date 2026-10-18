@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                       :::      ::::::::    */
-/*   puts_utils.c                                      :+:      :+:    :+:    */
-/*                                                   +:+ +:+         +:+      */
-/*   By: dcasasol <dcasasol@student.42malaga.com>  #+#  +:+       +#+         */
-/*                                               +#+#+#+#+#+   +#+            */
-/*   Created: 2026/09/16 16:49:38 by dcasasol         #+#    #+#              */
-/*   Updated: 2026/09/16 16:49:38 by dcasasol        ###   ########.fr        */
+/*                                                        :::      ::::::::   */
+/*   puts_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dcasasol <dcasasol@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/16 16:49:38 by dcasasol          #+#    #+#             */
+/*   Updated: 2026/09/25 15:44:36 by dcasasol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	ft_putnbr_decimal_unsigned(unsigned int d, int pn)
 	}
 }
 
-int		ft_print_char(char c)
+int	ft_print_char(char c)
 {
 	ft_putchar_fd(c, 1);
 	return (1);

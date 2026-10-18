@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                       :::      ::::::::    */
-/*   memory_utils.c                                    :+:      :+:    :+:    */
-/*                                                   +:+ +:+         +:+      */
-/*   By: dcasasol <dcasasol@student.42malaga.com>  #+#  +:+       +#+         */
-/*                                               +#+#+#+#+#+   +#+            */
-/*   Created: 2026/09/16 16:49:38 by dcasasol         #+#    #+#              */
-/*   Updated: 2026/09/16 16:49:38 by dcasasol        ###   ########.fr        */
+/*                                                        :::      ::::::::   */
+/*   memory_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dcasasol <dcasasol@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/16 16:49:38 by dcasasol          #+#    #+#             */
+/*   Updated: 2026/09/25 15:59:02 by dcasasol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_end_list(va_list a, int p, t_conversion	*co)
 	return (p);
 }
 
-int		ft_free_context(t_context *cx, int ret)
+int	ft_free_context(t_context *cx, int ret)
 {
 	if (cx != NULL)
 	{
@@ -29,9 +29,9 @@ int		ft_free_context(t_context *cx, int ret)
 	return (ret);
 }
 
-int		ft_char_lector(char const *str, va_list a, t_conversion *cn, int *i)
+int	ft_char_lector(char const *str, va_list a, t_conversion *cn, int *i)
 {
-	int				res;
+	int		res;
 
 	if (str[*i] != '%')
 		return (ft_print_char(str[*i]));
