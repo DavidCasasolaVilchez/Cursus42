@@ -19,7 +19,7 @@ def power_validator(min_power: int) -> Callable:
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
-            power: int = kwargs.get("power")
+            power = kwargs.get("power")
             if power is None and len(args) >= 2:
                 power = args[2]
             if power is None or int(power) < min_power:

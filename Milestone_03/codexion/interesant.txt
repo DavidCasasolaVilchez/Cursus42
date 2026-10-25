@@ -1,0 +1,6 @@
+/* valgrind tool hellgrind ->  datarace */
+
+
+// printf("+ number_of_coders -> %d\n+ time_to_burnout -> %d\n+ time_to_compile -> %d\n+ time_to_debug -> %d\n+ time_to_refactor -> %d\n+ number_of_compiles_required -> %d\n+ dongle_cooldown -> %d\n+ scheduler -> %d\n", cx->number_of_coders, cx->time_to_burnout, cx->time_to_compile, cx->time_to_debug, cx->time_to_refactor, cx->number_of_compiles_required, cx->dongle_cooldown, cx->scheduler);
+
+HACER EL CLEANER ANTES DE VOLVER A EJECUTAR!!
