@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                       :::      ::::::::    */
+/*   coder_thread_utils.c                              :+:      :+:    :+:    */
+/*                                                   +:+ +:+         +:+      */
+/*   By: dcasasol <dcasasol@student.42malaga.com>  #+#  +:+       +#+         */
+/*                                               +#+#+#+#+#+   +#+            */
+/*   Created: 2026/10/25 13:28:51 by dcasasol         #+#    #+#              */
+/*   Updated: 2026/10/25 13:28:51 by dcasasol        ###   ########.fr        */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "codexion.h"
 
 void	compile(t_coder *cod)
@@ -6,7 +18,7 @@ void	compile(t_coder *cod)
 	pthread_mutex_lock(&cod->cx->scheduler_mutex);
 	gettimeofday(cod->last_compile_start, NULL);
 	pthread_mutex_unlock(&cod->cx->scheduler_mutex);
-	usleep((__useconds_t)cod->cx->time_to_compile * 1000);
+	usleep((__useconds_t) cod->cx->time_to_compile * 1000);
 	pthread_mutex_lock(&cod->cx->scheduler_mutex);
 	cod->num_compilations++;
 	pthread_mutex_unlock(&cod->cx->scheduler_mutex);
@@ -17,15 +29,14 @@ void	compile(t_coder *cod)
 
 void	everyone_compile(t_cx *cx)
 {
-	int		i;
+	int	i;
+
 	pthread_mutex_lock(&cx->scheduler_mutex);
 	i = 0;
 	while (i < cx->number_of_coders
 		&& cx->coders[i]->num_compilations
-			>= cx->number_of_compiles_required)
-	{
+		>= cx->number_of_compiles_required)
 		i++;
-	}
 	if (i == cx->number_of_coders)
 	{
 		cx->end = 1;
@@ -37,13 +48,13 @@ void	everyone_compile(t_cx *cx)
 void	debbug(t_coder *cod)
 {
 	displayer(cod->cx, cod->id, DEBUG);
-	usleep((__useconds_t)cod->cx->time_to_debug * 1000);
+	usleep((__useconds_t) cod->cx->time_to_debug * 1000);
 }
 
 void	refractor(t_coder *cod)
 {
 	displayer(cod->cx, cod->id, REFACTOR);
-	usleep((__useconds_t)cod->cx->time_to_refactor * 1000);
+	usleep((__useconds_t) cod->cx->time_to_refactor * 1000);
 }
 
 void	try_take_dongles(t_coder *cod)
@@ -56,13 +67,12 @@ void	try_take_dongles(t_coder *cod)
 	right_req = malloc(sizeof(t_request));
 	left_req = malloc(sizeof(t_request));
 	if (!right_req || !left_req || !now)
-		return free(right_req), free(left_req), free(now);
+		return (free(right_req), free(left_req), free(now));
 	gettimeofday(now, NULL);
 	right_req->coder_id = cod->id;
 	right_req->arrival = now->tv_sec * 1000000LL + now->tv_usec;
 	right_req->deadline = cod->last_compile_start->tv_sec * 1000000LL
-		+ cod->last_compile_start->tv_usec
-		+ cod->cx->time_to_burnout * 1000;
+		+ cod->last_compile_start->tv_usec + cod->cx->time_to_burnout * 1000;
 	*left_req = *right_req;
 	pthread_mutex_lock(&cod->cx->scheduler_mutex);
 	cod->cx->dongles[cod->dright]->heap->requests[

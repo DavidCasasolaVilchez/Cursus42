@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                       :::      ::::::::    */
+/*   memory_utils.c                                    :+:      :+:    :+:    */
+/*                                                   +:+ +:+         +:+      */
+/*   By: dcasasol <dcasasol@student.42malaga.com>  #+#  +:+       +#+         */
+/*                                               +#+#+#+#+#+   +#+            */
+/*   Created: 2026/10/25 13:45:18 by dcasasol         #+#    #+#              */
+/*   Updated: 2026/10/25 13:45:18 by dcasasol        ###   ########.fr        */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "codexion.h"
 
 void	*ft_calloc(unsigned int nmemb, unsigned int size)
 {
 	unsigned char	*a;
-	unsigned int			i;
+	unsigned int	i;
 
 	if (size != 0 && nmemb != 0)
 	{

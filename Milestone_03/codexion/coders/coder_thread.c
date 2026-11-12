@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                       :::      ::::::::    */
+/*   coder_thread.c                                    :+:      :+:    :+:    */
+/*                                                   +:+ +:+         +:+      */
+/*   By: dcasasol <dcasasol@student.42malaga.com>  #+#  +:+       +#+         */
+/*                                               +#+#+#+#+#+   +#+            */
+/*   Created: 2026/10/25 13:23:42 by dcasasol         #+#    #+#              */
+/*   Updated: 2026/10/25 13:23:42 by dcasasol        ###   ########.fr        */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "codexion.h"
 
 int	create_coders(t_cx *cx)
 {
-	int		i;
+	int	i;
 
 	cx->coders = ft_calloc(cx->number_of_coders + 1, sizeof(t_coder *));
 	if (cx->coders == NULL)
@@ -31,9 +43,9 @@ static int	context_ended(t_cx *cx)
 
 void	*start_coder(void *ptr)
 {
-	t_coder *coder;
+	t_coder	*coder;
 
-	coder = (t_coder *)ptr;
+	coder = (t_coder *) ptr;
 	pthread_mutex_lock(&coder->cx->scheduler_mutex);
 	while (coder->cx->threads_created == 0)
 		pthread_cond_wait(&coder->cx->scheduler_changed,
@@ -47,10 +59,10 @@ void	*start_coder(void *ptr)
 		compile(coder);
 		leave_dongles(coder, coder->cx);
 		if (context_ended(coder->cx))
-			break;
+			break ;
 		debbug(coder);
 		if (context_ended(coder->cx))
-			break;
+			break ;
 		refractor(coder);
 	}
 	return (NULL);
@@ -70,7 +82,7 @@ void	select_dongles(t_coder *c, int num_coders)
 
 t_coder	*init_coder(int i, t_cx *cx)
 {
-	t_coder		*c;
+	t_coder	*c;
 
 	c = malloc(sizeof(t_coder));
 	if (c == NULL)

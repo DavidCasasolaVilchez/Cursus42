@@ -1,0 +1,11 @@
+- [x] • The first line must define the number of drones using nb_drones: <positive_integer>.
+- [x] • The program must be able to handle any number of drones.
+- [x] • There must be exactly one start_hub: zone and one end_hub: zone.
+- [x] • Each zone must have a unique name and valid integer coordinates.
+- [x] • Zone names can use any valid characters except dashes and spaces.
+- [x] • The same connection must not appear more than once (e.g., a-b and b-a are con-sidered duplicates).
+- [x] • Any metadata block (e.g., [zone=... color=...] for zones, [max_link_capacity=...]for connections) must be syntactically valid
+- [x] • Zone types must be one of: normal, blocked, restricted, priority. Any invalidtype must raise a parsing error.
+- [x] • Capacity values (max_drones for zones, max_link_capacity for connections) mustbe positive integers.
+- [x] • The max_drones capacity is ignored on the start_hub and end_hub zones: these have no capacity limit (all drones may start in the start zone, and any number of drones may be delivered to the end zone). If such metadata is present on those two zones, it is ignored and is not a validation error.
+- [x] • Any other parsing error must stop the program and return a clear error message indicating the line and cause.

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                       :::      ::::::::    */
+/*   dongle_utils.c                                    :+:      :+:    :+:    */
+/*                                                   +:+ +:+         +:+      */
+/*   By: dcasasol <dcasasol@student.42malaga.com>  #+#  +:+       +#+         */
+/*                                               +#+#+#+#+#+   +#+            */
+/*   Created: 2026/10/25 13:30:11 by dcasasol         #+#    #+#              */
+/*   Updated: 2026/10/25 13:30:11 by dcasasol        ###   ########.fr        */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "codexion.h"
 
 static int	request_is_first(t_heap *heap, int id)
@@ -37,7 +49,7 @@ void	leave_dongles(t_coder *coder, t_cx *cx)
 
 	left = cx->dongles[coder->dleft];
 	right = cx->dongles[coder->dright];
-	usleep((__useconds_t)cx->dongle_cooldown * 1000);
+	usleep((__useconds_t) cx->dongle_cooldown * 1000);
 	pthread_mutex_lock(&cx->scheduler_mutex);
 	left->busy = 0;
 	right->busy = 0;

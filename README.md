@@ -1,4 +1,4 @@
-*Este proyecto ha sido creado como parte del currículo de 42 por DavidCasasolaVilchez.*
+*Este proyecto ha sido creado como parte del currículo de 42 por dcasasol.*
 
 # Codexion
 

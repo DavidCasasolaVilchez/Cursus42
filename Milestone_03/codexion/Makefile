@@ -53,20 +53,30 @@ fclean: clean
 re: fclean all
 
 run: re
+	clear
+	norminette
 	./$(NAME) 8 12000 1000 3000 2000 4 1000 edf
 	
 run_easy: re
+	clear
+	norminette
 	./$(NAME) $(ARGS_EASY)
 	
 run_lesseasy: re
+	clear
+	norminette
 	./$(NAME) $(ARGS_LEASY)
 	
 run_medium: re
+	clear
+	norminette
 	./$(NAME) $(ARGS_MEDE) > $(LOGEDF)
 	./$(NAME) $(ARGS_MEDF) > $(LOGFIFO)
 	$(WC) $(LOGFIFO) $(LOGEDF)
 	
 run_edf_tiebreaker: re
+	clear
+	norminette
 	./$(NAME) $(ARGS_EDFTB)
 
 .PHONY: all clean fclean re run

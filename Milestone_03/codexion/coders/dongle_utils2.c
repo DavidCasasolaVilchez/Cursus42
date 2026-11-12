@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                       :::      ::::::::    */
+/*   dongle_utils2.c                                   :+:      :+:    :+:    */
+/*                                                   +:+ +:+         +:+      */
+/*   By: dcasasol <dcasasol@student.42malaga.com>  #+#  +:+       +#+         */
+/*                                               +#+#+#+#+#+   +#+            */
+/*   Created: 2026/10/25 13:42:02 by dcasasol         #+#    #+#              */
+/*   Updated: 2026/10/25 13:42:02 by dcasasol        ###   ########.fr        */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "codexion.h"
 
 int	create_dongle(t_dongles **new, t_sch scheduler, int ncods)
@@ -15,8 +27,8 @@ int	create_dongle(t_dongles **new, t_sch scheduler, int ncods)
 		return (free(new), 0);
 	dongle->heap->capacity = ncods;
 	dongle->heap->size = 0;
-	dongle->heap->requests =
-		ft_calloc(dongle->heap->capacity, sizeof(t_request *));
+	dongle->heap->requests = ft_calloc(dongle->heap->capacity,
+			sizeof(t_request *));
 	if (dongle->heap->requests == NULL)
 		return (free(new), free(dongle->heap), 0);
 	dongle->busy = 0;
@@ -26,7 +38,7 @@ int	create_dongle(t_dongles **new, t_sch scheduler, int ncods)
 
 int	create_dongles(t_cx *cx)
 {
-	int		i;
+	int	i;
 
 	cx->dongles = ft_calloc(cx->number_of_coders + 1, sizeof(t_dongles *));
 	if (cx->dongles == NULL)
@@ -35,7 +47,7 @@ int	create_dongles(t_cx *cx)
 	while (i < cx->number_of_coders)
 	{
 		if (create_dongle(&cx->dongles[i],
-			cx->scheduler, cx->number_of_coders) == 0)
+				cx->scheduler, cx->number_of_coders) == 0)
 			return (0);
 		cx->dongles_created++;
 		i++;

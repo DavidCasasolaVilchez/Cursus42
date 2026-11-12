@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                       :::      ::::::::    */
+/*   displayer_utils.c                                 :+:      :+:    :+:    */
+/*                                                   +:+ +:+         +:+      */
+/*   By: dcasasol <dcasasol@student.42malaga.com>  #+#  +:+       +#+         */
+/*                                               +#+#+#+#+#+   +#+            */
+/*   Created: 2026/10/25 13:44:03 by dcasasol         #+#    #+#              */
+/*   Updated: 2026/10/25 13:44:03 by dcasasol        ###   ########.fr        */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "codexion.h"
 
 void	displayer(t_cx *cx, int id, t_action action)
@@ -25,15 +37,14 @@ void	displayer_finish(t_cx *cx)
 {
 	int	i;
 	int	b;
-	
+
 	b = 0;
 	i = -1;
 	pthread_mutex_lock(&cx->display);
 	printf("\033[95m\n\nResults:\n");
 	while (++i < cx->coders_created)
 	{
-		if (cx->coders[i]->num_compilations <
-			cx->number_of_compiles_required)
+		if (cx->coders[i]->num_compilations < cx->number_of_compiles_required)
 			b = 1;
 		printf("\tThe coder %d has compiled %d times\n",
 			cx->coders[i]->id, cx->coders[i]->num_compilations);
@@ -44,5 +55,4 @@ void	displayer_finish(t_cx *cx)
 	else
 		printf("\nThe program has ended because a coder has burned out\n");
 	pthread_mutex_unlock(&cx->display);
-
 }

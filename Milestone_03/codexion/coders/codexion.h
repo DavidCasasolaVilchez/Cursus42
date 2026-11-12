@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                       :::      ::::::::    */
+/*   codexion.h                                        :+:      :+:    :+:    */
+/*                                                   +:+ +:+         +:+      */
+/*   By: dcasasol <dcasasol@student.42malaga.com>  #+#  +:+       +#+         */
+/*                                               +#+#+#+#+#+   +#+            */
+/*   Created: 2026/10/25 13:27:10 by dcasasol         #+#    #+#              */
+/*   Updated: 2026/10/25 13:27:10 by dcasasol        ###   ########.fr        */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CODEXION_H
 # define CODEXION_H
 
 # define _XOPEN_SOURCE 500
 
-#include <pthread.h>
-#include <sys/time.h>
-#include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
+# include <pthread.h>
+# include <sys/time.h>
+# include <string.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
 
 typedef enum e_sch
 {
@@ -27,9 +39,9 @@ typedef enum e_action
 	NONE
 }	t_action;
 
-typedef struct	s_cx t_cx;
+typedef struct s_cx	t_cx;
 
-typedef struct	s_coder
+typedef struct s_coder
 {
 	int				id;
 	t_cx			*cx;
@@ -54,7 +66,7 @@ typedef struct s_heap
 	int			capacity;
 }	t_heap;
 
-typedef struct	s_dongles
+typedef struct s_dongles
 {
 	t_sch			sch;
 	t_heap			*heap;
@@ -62,7 +74,7 @@ typedef struct	s_dongles
 	int				busy;
 }	t_dongles;
 
-struct	s_cx
+struct s_cx
 {
 	int				number_of_compiles_required;
 	int				number_of_coders;
@@ -87,40 +99,40 @@ struct	s_cx
 };
 
 /* ### CHECKERS ### */
-t_sch		scheduler_checker(char *input);
-void		everyone_compile(t_cx *cx);
-int			int_checker(char *input);
+t_sch	scheduler_checker(char *input);
+void	everyone_compile(t_cx *cx);
+int		int_checker(char *input);
 
 /* ### ACTIONS ### */
-int			take_dongles(t_coder *coder, t_cx *cx);
-void		compile(t_coder *cod);
-void		leave_dongles(t_coder *coder, t_cx *cx);
-void		refractor(t_coder *cod);
-void		debbug(t_coder *cod);
+int		take_dongles(t_coder *coder, t_cx *cx);
+void	compile(t_coder *cod);
+void	leave_dongles(t_coder *coder, t_cx *cx);
+void	refractor(t_coder *cod);
+void	debbug(t_coder *cod);
 
 /* ### CODE THREAD MANAGE ### */
-t_coder		*init_coder(int i, t_cx *cx);
-void		*start_coder(void *coder);
-int			create_coders(t_cx *cx);
+t_coder	*init_coder(int i, t_cx *cx);
+void	*start_coder(void *coder);
+int		create_coders(t_cx *cx);
 
 /* ### DONGLE THREAD MANAGE ### */
-void		try_take_dongles(t_coder *cod);
-int			create_dongles(t_cx *cx);
+void	try_take_dongles(t_coder *cod);
+int		create_dongles(t_cx *cx);
 
 /* ### DONGLE THREAD MANAGE ### */
-void		create_monitor(t_cx *cx);
-void		*start_monitor(void *ptr);
+void	create_monitor(t_cx *cx);
+void	*start_monitor(void *ptr);
 
 /* ### HEAP MANAGE ### */
-void		remove_from_heap(t_dongles *dongle);
-void		reorder_heap(t_dongles *dongle);
+void	remove_from_heap(t_dongles *dongle);
+void	reorder_heap(t_dongles *dongle);
 
 /* ### CLEANER ### */
-void		free_context(t_cx *cx);
-void		*ft_calloc(unsigned int nmemb, unsigned int size);
+void	free_context(t_cx *cx);
+void	*ft_calloc(unsigned int nmemb, unsigned int size);
 
 /* ### DISPLAYER ### */
-void		displayer(t_cx *cx, int id, t_action action);
-void		displayer_finish(t_cx *cx);
+void	displayer(t_cx *cx, int id, t_action action);
+void	displayer_finish(t_cx *cx);
 
 #endif
